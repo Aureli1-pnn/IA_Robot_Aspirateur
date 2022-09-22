@@ -1,5 +1,5 @@
 ﻿static class Constants{
-    public const int NBOFROOM = 26;
+    public const int NBOFROOM = 25;
 
     public static bool isASquare(){
 
@@ -12,20 +12,19 @@
     }
 }
 
-// Programme
+// Programmes
 class Program{
     static void Main()
     {
         // To do 
 
         // Test
-        Random rd = new Random();
-
-        // Maybe a new dirty room (probability 1/10)
-        /*for (int i = 1; i <= 100; i++)
+        Environment myEnvironment = new Environment();
+        for (int i = 0; i < 100; i++)
         {
-            int chance = rd.Next(1, 11);    
-            Console.WriteLine(i + ": " + chance);
-        }*/
+            Console.WriteLine("\n\n\n");
+            myEnvironment.life();
+            myEnvironment.print();
+        }
     }
 }

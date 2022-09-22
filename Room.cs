@@ -19,7 +19,14 @@ public class Room{
 
     // Methods
     public void print(){
-        Console.WriteLine("My Localisation : " + Localisation);
+        string message = "My Localisation : " + getLocalisation();
+        if(AmIDirty()){
+            message += " dirty place";
+        }
+        if(doIHaveAJawel()){
+            message += " with a jewel";
+        }
+        Console.WriteLine(message);
     }
 
     // Setters

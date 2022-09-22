@@ -38,20 +38,43 @@ public class Environment{
         }
     }
 
-    public void life(){
-        Random rd = new Random();
-
+    public bool shouldThereBeANewDirtySpace(){
         // Maybe a new dirty room (probability 1/10)
+        Random rd = new Random();
         int chance = rd.Next(1, 11);
         if(chance == 7){
-            int randomRoom = rd.Next(0, Constants.NBOFROOM);
-            Map[randomRoom].dirty();
+            return true;
         }
+        return false;
+    }
+
+    public bool shouldThereBeANewLostJewel(){
         // Maybe a jewel somewhere (probability 1/1000)
-        chance = rd.Next(1, 1001);
+        Random rd = new Random();
+        int chance = rd.Next(1, 1001);
         if(chance == 69){           // Aller l'OL
-            int randomRoom = rd.Next(0, Constants.NBOFROOM);
-            Map[randomRoom].setHaveJewel(true); 
+            return true;
         }
+        return false;
+    }
+
+    public void generateDirt(){
+        Random rd = new Random();
+        int randomRoom = rd.Next(0, Constants.NBOFROOM);
+        Map[randomRoom].dirty();
+    }
+
+    public void loseJewel(){
+        Random rd = new Random();
+        int randomRoom = rd.Next(0, Constants.NBOFROOM);
+        Map[randomRoom].setHaveJewel(true); 
+    }
+    public void life(){
+       if(shouldThereBeANewDirtySpace()){
+            generateDirt();
+       }
+       if(shouldThereBeANewLostJewel()){
+            loseJewel();
+       }
     }
 }
