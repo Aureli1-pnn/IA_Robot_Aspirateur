@@ -21,6 +21,9 @@ public class Robot{
         myEnvironment.cleaningRoom(PositionX, PositionY);
         consumeElectricity();
     }
+    public void catchJewel(Environment myEnvironment){
+        consumeElectricity();
+    }
 
     // Méthodes de déplacement du robot
     public void goToTheLeft(){
