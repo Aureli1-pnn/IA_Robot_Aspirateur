@@ -1,40 +1,31 @@
 public class Environment{
 
     // Attributs
-    public Room[] Map = new Room[Constants.NBOFROOM];
+    private Room[][] Map = new Room[Constants.DIMENSION][];
+    private int performance_measure;
 
     // Constructeur
     public Environment(){
-
-        // Dimension, Column and Line will be use to give a localisation to a room
-        int column = 1;
-        int line = 1;
-        int dimension = (int)Math.Sqrt((double)Constants.NBOFROOM);
-
-        if(!Constants.isASquare()){
-            dimension++;
-        }
-
-        // Create rooms
-        for (int i = 0; i < Constants.NBOFROOM; i++)
+        performance_measure = 0;
+        for (int i = 0; i < Constants.DIMENSION; i++)
         {
-            string localisation = line + "_" + column;
-            Map[i] = new Room(localisation);
-            if((i+1) % dimension == 0){
-                line++;
-                column = 1;
-            }
-            else{
-                column++;
+            Map[i] = new Room[Constants.DIMENSION];
+            for (int j = 0; j < Constants.DIMENSION; j++)
+            {
+                string localisation = (i+1) + "-" + (j+1);
+                Map[i][j] = new Room(localisation);
             }
         }
     }
 
     // Methods 
     public void print(){
-        for (int i = 0; i < Constants.NBOFROOM; i++)
+        for (int i = 0; i < Constants.DIMENSION; i++)
         {
-            Map[i].print();
+            for (int j = 0; j < Constants.DIMENSION; j++)
+            {
+                Map[i][j].print();
+            }
         }
     }
 
@@ -60,14 +51,25 @@ public class Environment{
 
     public void generateDirt(){
         Random rd = new Random();
-        int randomRoom = rd.Next(0, Constants.NBOFROOM);
-        Map[randomRoom].dirty();
+        int randomLine = rd.Next(0, Constants.DIMENSION);
+        int randomColumn = rd.Next(0, Constants.DIMENSION);
+        Map[randomLine][randomColumn].dirty();
+    }
+
+    public void cleaningRoom(int X, int Y){
+        if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
+            if(Map[X][Y].AmIDirty()){
+                performance_measure++;
+            }
+            Map[X][Y].cleaned();
+        }
     }
 
     public void loseJewel(){
         Random rd = new Random();
-        int randomRoom = rd.Next(0, Constants.NBOFROOM);
-        Map[randomRoom].setHaveJewel(true); 
+        int randomLine = rd.Next(0, Constants.DIMENSION);
+        int randomColumn = rd.Next(0, Constants.DIMENSION);
+        Map[randomLine][randomColumn].setHaveJewel(true); 
     }
     public void life(){
        if(shouldThereBeANewDirtySpace()){

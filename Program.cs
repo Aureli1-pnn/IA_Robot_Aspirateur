@@ -1,5 +1,6 @@
 ﻿static class Constants{
-    public const int NBOFROOM = 25;
+    public const int DIMENSION = 5;
+    public const int NBOFROOM = DIMENSION*DIMENSION;
 
     public static bool isASquare(){
 
@@ -20,11 +21,20 @@ class Program{
 
         // Test
         Environment myEnvironment = new Environment();
+        Robot myRobot = new Robot();
+        /*
+        myEnvironment.life();
+        Console.WriteLine(myRobot.getElectricity());
+        myRobot.aspire(myEnvironment);
+        Console.WriteLine(myRobot.getElectricity());
+        */
+        /*
         for (int i = 0; i < 100; i++)
         {
             Console.WriteLine("\n\n\n");
             myEnvironment.life();
             myEnvironment.print();
         }
+        */
     }
 }
