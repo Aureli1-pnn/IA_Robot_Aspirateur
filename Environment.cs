@@ -61,6 +61,12 @@ public class Environment{
             if(Map[X][Y].AmIDirty()){
                 performance_measure++;
             }
+            else{
+                performance_measure--;
+            }
+            if(Map[X][Y].doIHaveAJewel()){
+                performance_measure -= 10;
+            }
             Map[X][Y].cleaned();
         }
     }

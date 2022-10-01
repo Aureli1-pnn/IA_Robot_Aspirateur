@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj": {}
+    "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj": {
+    "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
+        "projectUniqueName": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
         "projectName": "TP1",
-        "projectPath": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
+        "projectPath": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
         "packagesPath": "C:\\Users\\Aurel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\obj\\",
+        "outputPath": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aurel\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -37,6 +37,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "CommandLineParser": {
+              "target": "Package",
+              "version": "[2.9.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -14,7 +14,7 @@ public class Room{
 
     // Getters
     public string getLocalisation(){ return Localisation;}
-    public bool doIHaveAJawel(){ return HaveJewel;}
+    public bool doIHaveAJewel(){ return HaveJewel;}
     public bool AmIDirty(){ return IsDirty;}
 
     // Methods
@@ -23,7 +23,7 @@ public class Room{
         if(AmIDirty()){
             message += " dirty place";
         }
-        if(doIHaveAJawel()){
+        if(doIHaveAJewel()){
             message += " with a jewel";
         }
         Console.WriteLine(message);
