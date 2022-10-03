@@ -6,17 +6,20 @@ public class Environment{
 
     // Constructeur
     public Environment(){
-        performance_measure = 0;
+        this.performance_measure = 0;
         for (int i = 0; i < Constants.DIMENSION; i++)
         {
-            Map[i] = new Room[Constants.DIMENSION];
+            this.Map[i] = new Room[Constants.DIMENSION];
             for (int j = 0; j < Constants.DIMENSION; j++)
             {
                 string localisation = (i+1) + "-" + (j+1);
-                Map[i][j] = new Room(localisation);
+                this.Map[i][j] = new Room(localisation);
             }
         }
     }
+
+    // Getters
+    public Room getRoom(int X, int Y){ return Map[X][Y];}
 
     // Methods 
     public void print(){
@@ -24,7 +27,7 @@ public class Environment{
         {
             for (int j = 0; j < Constants.DIMENSION; j++)
             {
-                Map[i][j].print();
+                this.Map[i][j].print();
             }
         }
     }
@@ -58,28 +61,28 @@ public class Environment{
 
     public void cleaningRoom(int X, int Y){
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
-            if(Map[X][Y].AmIDirty()){
+            if(this.Map[X][Y].AmIDirty()){
                 changePerformanceMeasure(1);
             }
             else{
                 changePerformanceMeasure(-1);
             }
-            if(Map[X][Y].doIHaveAJewel()){
+            if(this.Map[X][Y].doIHaveAJewel()){
                 changePerformanceMeasure(-10);
             }
-            Map[X][Y].cleaned();
+            this.Map[X][Y].cleaned();
         }
     }
 
     public void catchJewel(int X, int Y){
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
-            if(Map[X][Y].doIHaveAJewel()){
+            if(this.Map[X][Y].doIHaveAJewel()){
                 changePerformanceMeasure(5);
             }
             else{
                 changePerformanceMeasure(-1);
             }
-            Map[X][Y].setHaveJewel(false);
+            this.Map[X][Y].setHaveJewel(false);
         }
     }
 
@@ -87,20 +90,23 @@ public class Environment{
         Random rd = new Random();
         int randomLine = rd.Next(0, Constants.DIMENSION);
         int randomColumn = rd.Next(0, Constants.DIMENSION);
-        Map[randomLine][randomColumn].setHaveJewel(true); 
+        this.Map[randomLine][randomColumn].setHaveJewel(true); 
     }
 
     public int returnPerformanceMeasure(int electricity_consumption){
-        return performance_measure+electricity_consumption;
+        return this.performance_measure+electricity_consumption;
     }
 
     public void life(){
-       if(shouldThereBeANewDirtySpace()){
-            generateDirt();
-       }
-       if(shouldThereBeANewLostJewel()){
-            loseJewel();
-       }
+        while(true){
+            if(shouldThereBeANewDirtySpace()){
+                generateDirt();
+            }
+            if(shouldThereBeANewLostJewel()){
+                loseJewel();
+            }
+            this.print();
+        }
     }
 
     // Setters

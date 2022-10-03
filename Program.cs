@@ -20,7 +20,7 @@ namespace Agent_aspirateur
 
             // Initialisation of the variables
             Environment myEnvironment = new Environment();
-            Robot myRobot = new Robot();
+            Robot myRobot = new Robot(myEnvironment);
 
             // Creating Threads
             Thread t1 = new Thread(()=>myEnvironment.life()){
@@ -36,7 +36,7 @@ namespace Agent_aspirateur
 
             // Display performance measure
             Console.WriteLine("Performance measure : " + myEnvironment.returnPerformanceMeasure(myRobot.getElectricity()));
-            
+
             // Test
         }
 
