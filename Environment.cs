@@ -105,7 +105,6 @@ public class Environment{
             if(shouldThereBeANewLostJewel()){
                 loseJewel();
             }
-            this.print();
         }
     }
 

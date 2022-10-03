@@ -1,11 +1,4 @@
 ﻿using CommandLine;
-using System.Threading;
-using System;
-
-static class Constants{
-    public static int DIMENSION;
-    public static int NBOFROOM;
-}
 
 namespace Agent_aspirateur
 {
@@ -38,6 +31,7 @@ namespace Agent_aspirateur
             Console.WriteLine("Performance measure : " + myEnvironment.returnPerformanceMeasure(myRobot.getElectricity()));
 
             // Test
+
         }
 
         static bool determinateDimension(string[] args){
