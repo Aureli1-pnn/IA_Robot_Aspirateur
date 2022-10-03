@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj": {}
+    "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj": {
+    "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
+        "projectUniqueName": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
         "projectName": "TP1",
-        "projectPath": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
+        "projectPath": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
         "packagesPath": "C:\\Users\\Aurel\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\obj\\",
+        "outputPath": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aurel\\AppData\\Roaming\\NuGet\\NuGet.Config"

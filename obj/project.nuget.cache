@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zcRG62mJRi0K+7bIEG5K6iaJFXdYQsP/ci6xTFX4Vytvp1auj5LJO/ubB3wHSRAZsBPSImPOggIybA5eqiu2Sw==",
+  "dgSpecHash": "5VDs1cXpgHxk5OU1eBY0hS7w4wZLhMNvb0k7/FuRJx6wenmaQz/RZ7ZIkgH8tGZV01X4rmbSbObarDNaF6HGNw==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
+  "projectFilePath": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aurel\\.nuget\\packages\\commandlineparser\\2.9.1\\commandlineparser.2.9.1.nupkg.sha512"
   ],

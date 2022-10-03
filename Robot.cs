@@ -14,6 +14,9 @@ public class Robot{
     }
 
     // Méthodes
+    public void life(){
+        //blabla
+    }
     public void consumeElectricity(){
         Electricity++;
     }
@@ -22,6 +25,7 @@ public class Robot{
         consumeElectricity();
     }
     public void catchJewel(Environment myEnvironment){
+        myEnvironment.catchJewel(PositionX, PositionY);
         consumeElectricity();
     }
 

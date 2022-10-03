@@ -71,6 +71,18 @@ public class Environment{
         }
     }
 
+    public void catchJewel(int X, int Y){
+        if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
+            if(Map[X][Y].doIHaveAJewel()){
+                performance_measure += 5;
+            }
+            else{
+                performance_measure--;
+            }
+            Map[X][Y].setHaveJewel(false);
+        }
+    }
+
     public void loseJewel(){
         Random rd = new Random();
         int randomLine = rd.Next(0, Constants.DIMENSION);

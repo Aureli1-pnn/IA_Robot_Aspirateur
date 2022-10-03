@@ -1,11 +1,10 @@
 ﻿using CommandLine;
+using System.Threading;
+using System;
 
 static class Constants{
-    public const int DIMENSION = 5;
-    public const int NBOFROOM = DIMENSION*DIMENSION;
-     // = ops.DImension au carré
-
-    
+    public static int DIMENSION;
+    public static int NBOFROOM;
 }
 
 namespace Agent_aspirateur
@@ -14,36 +13,43 @@ namespace Agent_aspirateur
     {
         static void Main(string[] args)
         {
-            Parser.Default.ParseArguments<Options>(args).WithParsed<Options>(ops =>{
-                int user_line = 1;
-                if (ops.Dimension == null || ops.Dimension < 1){
-                    Console.WriteLine("You need to indicate the number of rooms in width and lenght that is and integer higher than 0");
-                }
-                else
-                {
-                    perform_actions(ops);
-                }
-           });
+            // Determinate dimension of the house with the user entry
+            if(!determinateDimension(args)){
+                System.Environment.Exit(0);
+            }
 
-            // To do 
-
-            // Test
+            // Initialisation of the variables
             Environment myEnvironment = new Environment();
             Robot myRobot = new Robot();
-            /*
-            myEnvironment.life();
-            Console.WriteLine(myRobot.getElectricity());
-            myRobot.aspire(myEnvironment);
-            Console.WriteLine(myRobot.getElectricity());
-            */
-            /*
-            for (int i = 0; i < 100; i++)
-            {
-            Console.WriteLine("\n\n\n");
-            myEnvironment.life();
-            myEnvironment.print();
-            }
-            */
+
+            // Creating Threads
+            Thread t1 = new Thread(()=>myEnvironment.life()){
+                Name = "Environment Thread"
+            };
+            Thread t2 = new Thread(()=>myRobot.life()){
+                Name = "Robot Thread"
+            };
+
+            // Executing threads
+            t1.Start();
+            t2.Start();
+
+            // Test
+        }
+
+        static bool determinateDimension(string[] args){
+            bool isAllGood = false;
+            Parser.Default.ParseArguments<Options>(args).WithParsed<Options>(ops =>{
+                if(ops.Dimension < 1){
+                    Console.WriteLine("You need to indicate the number of rooms in width and length that is an integer higher than 0");
+                }else{
+                    Console.WriteLine("Current value of ops.Dimension : " + ops.Dimension);
+                    Constants.DIMENSION = ops.Dimension;
+                    Constants.NBOFROOM = ops.Dimension*ops.Dimension;
+                    isAllGood = true;
+                }
+            });
+            return isAllGood;
         }
     }
 }
