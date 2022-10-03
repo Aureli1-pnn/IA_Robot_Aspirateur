@@ -59,13 +59,13 @@ public class Environment{
     public void cleaningRoom(int X, int Y){
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
             if(Map[X][Y].AmIDirty()){
-                performance_measure++;
+                changePerformanceMeasure(1);
             }
             else{
-                performance_measure--;
+                changePerformanceMeasure(-1);
             }
             if(Map[X][Y].doIHaveAJewel()){
-                performance_measure -= 10;
+                changePerformanceMeasure(-10);
             }
             Map[X][Y].cleaned();
         }
@@ -74,10 +74,10 @@ public class Environment{
     public void catchJewel(int X, int Y){
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
             if(Map[X][Y].doIHaveAJewel()){
-                performance_measure += 5;
+                changePerformanceMeasure(5);
             }
             else{
-                performance_measure--;
+                changePerformanceMeasure(-1);
             }
             Map[X][Y].setHaveJewel(false);
         }
@@ -89,6 +89,11 @@ public class Environment{
         int randomColumn = rd.Next(0, Constants.DIMENSION);
         Map[randomLine][randomColumn].setHaveJewel(true); 
     }
+
+    public int returnPerformanceMeasure(int electricity_consumption){
+        return performance_measure+electricity_consumption;
+    }
+
     public void life(){
        if(shouldThereBeANewDirtySpace()){
             generateDirt();
@@ -97,4 +102,7 @@ public class Environment{
             loseJewel();
        }
     }
+
+    // Setters
+    public void changePerformanceMeasure(int change){ performance_measure+=change;}
 }

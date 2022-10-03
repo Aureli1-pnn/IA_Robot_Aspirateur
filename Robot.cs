@@ -15,7 +15,9 @@ public class Robot{
 
     // Méthodes
     public void life(){
-        //blabla
+        while(true){
+            
+        }
     }
     public void consumeElectricity(){
         Electricity++;
