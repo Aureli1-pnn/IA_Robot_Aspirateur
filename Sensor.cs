@@ -1,11 +1,12 @@
 public class Sensor{
 
+    // Attributes
     private Robot Owner;
     private Environment Environment;
     private int PositionX;
     private int PositionY;
 
-    // Constructeur
+    // Constructor
     public Sensor(int X, int Y, Robot owner, Environment Environment){
         this.PositionX = X;
         this.PositionY = Y;

@@ -47,24 +47,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aurel\\.nuget\\packages\\": {}
+    "C:\\Users\\Aurel\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
+      "projectUniqueName": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
       "projectName": "TP1",
-      "projectPath": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
+      "projectPath": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\TP1.csproj",
       "packagesPath": "C:\\Users\\Aurel\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\obj\\",
+      "outputPath": "C:\\Users\\Aurel\\Documents\\UQAC\\Intelligence Artificielle\\TP1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Aurel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Aurel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

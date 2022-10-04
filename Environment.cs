@@ -20,22 +20,28 @@ public class Environment{
 
     // Getters
     public Room getRoom(int X, int Y){ return Map[X][Y];}
+    public Room[][] getMap(){ return this.Map;}
 
     // Methods 
     public void print(){
         for (int i = 0; i < Constants.DIMENSION; i++)
         {
-            for (int j = 0; j < Constants.DIMENSION; j++)
-            {
-                this.Map[i][j].print();
-            }
+                Console.WriteLine(this.Map[i][0].AmIDirty()
+                                + " "
+                                + this.Map[i][1].AmIDirty()
+                                + " "
+                                + this.Map[i][2].AmIDirty()
+                                + " "
+                                + this.Map[i][3].AmIDirty()
+                                + " "
+                                + this.Map[i][4].AmIDirty());
         }
     }
 
     public bool shouldThereBeANewDirtySpace(){
-        // Maybe a new dirty room (probability 1/10)
+        // Maybe a new dirty room (probability 1/300000)
         Random rd = new Random();
-        int chance = rd.Next(1, 11);
+        int chance = rd.Next(1, 3000001);
         if(chance == 7){
             return true;
         }
@@ -43,9 +49,9 @@ public class Environment{
     }
 
     public bool shouldThereBeANewLostJewel(){
-        // Maybe a jewel somewhere (probability 1/1000)
+        // Maybe a jewel somewhere (probability 1/100000000)
         Random rd = new Random();
-        int chance = rd.Next(1, 1001);
+        int chance = rd.Next(1, 1000000001);
         if(chance == 69){           // Aller l'OL
             return true;
         }

@@ -7,9 +7,9 @@ namespace Agent_aspirateur
         static void Main(string[] args)
         {
             // Determinate dimension of the house with the user entry
-            if(!determinateDimension(args)){
+            /*if(!determinateDimension(args)){
                 System.Environment.Exit(0);
-            }
+            }*/
 
             // Initialisation of the variables
             Environment myEnvironment = new Environment();
@@ -40,7 +40,7 @@ namespace Agent_aspirateur
                 if(ops.Dimension < 1){
                     Console.WriteLine("You need to indicate the number of rooms in width and length that is an integer higher than 0");
                 }else{
-                    Console.WriteLine("Current value of ops.Dimension : " + ops.Dimension);
+                    Console.WriteLine("Current value of Dimension : " + ops.Dimension);
                     Constants.DIMENSION = ops.Dimension;
                     Constants.NBOFROOM = ops.Dimension*ops.Dimension;
                     isAllGood = true;
