@@ -1,4 +1,5 @@
-static class Constants{
+﻿static class Constants
+{
     public static int DIMENSION;
     public static int NBOFROOM;
     public const int NBOFACTION = 10;

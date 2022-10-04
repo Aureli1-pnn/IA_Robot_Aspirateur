@@ -1,4 +1,5 @@
-public class Robot{
+﻿public class Robot
+{
 
     // Attributs 
     private int Electricity;
@@ -10,7 +11,8 @@ public class Robot{
     private string[] actions;
 
     // Constructeur
-    public Robot(Environment myEnvironment){
+    public Robot(Environment myEnvironment)
+    {
 
         Random rd = new Random();
 
@@ -23,7 +25,8 @@ public class Robot{
         this.mySensors = new List<Sensor>();
 
         this.actions = new string[Constants.NBOFACTION];
-        for(int i = 0; i < Constants.NBOFACTION; i++){
+        for (int i = 0; i < Constants.NBOFACTION; i++)
+        {
             this.actions[i] = Constants.DONOTHING;
         }
 
@@ -38,41 +41,51 @@ public class Robot{
     }
 
     // Méthodes
-    public void life(){
-        while(true){
+    public void life()
+    {
+        while (true)
+        {
             this.ObserveEnvironmentWithAllMySensors();
         }
     }
 
-    public void ObserveEnvironmentWithAllMySensors(){
-        foreach (var s in this.mySensors){
+    public void ObserveEnvironmentWithAllMySensors()
+    {
+        foreach (var s in this.mySensors)
+        {
             Console.WriteLine(s.returnMyState());
         }
         Console.WriteLine("\n");
     }
 
-    public void UpdateMyState(){
+    public void UpdateMyState()
+    {
 
     }
-    public void ChooseAnAction(){
+    public void ChooseAnAction()
+    {
 
     }
-    public void justDoIt(){
+    public void justDoIt()
+    {
 
     }
     // Getters
-    public int getElectricity(){ return this.Electricity; }
-    public int getPositionX(){ return this.PositionX; }
-    public int getPositionY(){ return this.PositionY; }
+    public int getElectricity() { return this.Electricity; }
+    public int getPositionX() { return this.PositionX; }
+    public int getPositionY() { return this.PositionY; }
 
     // Setters
-    public void setPositionX(int newPosition){
+    public void setPositionX(int newPosition)
+    {
         this.PositionX = newPosition;
     }
-    public void setPositionY(int newPosition){
+    public void setPositionY(int newPosition)
+    {
         this.PositionY = newPosition;
     }
-    public void consumeElectricity(){
+    public void consumeElectricity()
+    {
         this.Electricity++;
     }
 }
