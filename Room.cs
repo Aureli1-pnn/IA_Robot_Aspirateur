@@ -1,11 +1,11 @@
 public class Room{
 
-    // Attributs
-    private string Localisation { get; set; }
+    // Attributes
+    private string Localisation { get; set; }   // just use for testing
     private bool HaveJewel;
     private bool IsDirty;
 
-    // Constructeur
+    // Constructor
     public Room(string localisation){
         Localisation = localisation;
         HaveJewel = false;
@@ -18,6 +18,8 @@ public class Room{
     public bool AmIDirty(){ return IsDirty;}
 
     // Methods
+    
+    // just use for testing
     public void print(){
         string message = "My Localisation : " + getLocalisation();
         if(AmIDirty()){

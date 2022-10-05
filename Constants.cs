@@ -1,6 +1,5 @@
 static class Constants{
-    public static int DIMENSION = 5;
-    public static int NBOFROOM;
+    public static int DIMENSION;
     public static int NBOFACTION;
 
     // All Possible Actions

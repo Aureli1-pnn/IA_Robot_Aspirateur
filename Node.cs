@@ -193,6 +193,7 @@ public class Node{
         return true;
     }
 
+    // Avoid loop
     public bool doIHaveVisitedThisRoom(int X, int Y){
         foreach (var tuple in this.AlreadyVisitRoom)
         {
@@ -203,6 +204,7 @@ public class Node{
         return false;
     }
 
+    // Avoid out of range
     public bool roomExist(int X, int Y){
         //Console.WriteLine("X:" + X +"  Y :" + Y);
         if(X >= 0 && X < Constants.DIMENSION && Y >= 0 && Y < Constants.DIMENSION){
@@ -213,6 +215,7 @@ public class Node{
         }
     }
 
+    // Calcul Heuristic function for the Informed exploration
     public int CalculHeuristic(){
         int heuristic = 0;
         for (int i = 0; i < Constants.DIMENSION; i++)
@@ -229,7 +232,7 @@ public class Node{
         return heuristic;
     }
 
-    // Return sequence
+    // Return sequence to the solution
     public Stack<string> GenerateSequence(){
 
         Stack<string> Sequence = new Stack<string>();
@@ -245,7 +248,7 @@ public class Node{
 
     }
 
-    // Print sequence
+    // Print sequence to the solution
     public void printSequence(Stack<string> Sequence){
         int i = 1;
         foreach (var item in Sequence)
@@ -257,22 +260,10 @@ public class Node{
     }
 
     // Getters 
-    public string GetAction(){
-        return this.Action;
-    }
-    public Node? getFather(){
-        return this.Father;
-    }
-    public bool AmIALeaf(){
-        return this.IsLeaf;
-    }
-    public int getPositionX(){
-        return this.RobotPositionX;
-    }
-    public int getPositionY(){
-        return this.RobotPositionY;
-    }
-    public int getDepth(){
-        return this.Depth;
-    }
+    public string GetAction(){ return this.Action;}
+    public Node? getFather(){ return this.Father;}
+    public bool AmIALeaf(){ return this.IsLeaf;}
+    public int getPositionX(){ return this.RobotPositionX;}
+    public int getPositionY(){ return this.RobotPositionY;}
+    public int getDepth(){ return this.Depth;}
 }

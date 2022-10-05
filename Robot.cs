@@ -1,30 +1,45 @@
 public class Robot{
 
-    // Attributs 
+    // Attributes 
     private int Electricity;
     private int PositionX;
     private int PositionY;
-    private Stack<string> actions;
+    private Stack<string> Intentions;
     private int[][] states;
     private List<Sensor> mySensors;
     private Environment myEnvironment;
     private Effector myEffector;
 
-    // Constructeur
+    // Constructor
     public Robot(Environment myEnvironment){
 
+        // Random position
         Random rd = new Random();
-
         this.PositionX = rd.Next(0, Constants.DIMENSION);
         this.PositionY = rd.Next(0, Constants.DIMENSION);
+
+        // In the beginning there is no consumption of electricity
         this.Electricity = 0;
 
+        // Agent must have an environment 
         this.myEnvironment = myEnvironment;
+
+        // Initialisation of his effector and sensors(one per room of environment)
         this.myEffector = new Effector(myEnvironment, this);
         this.mySensors = new List<Sensor>();
+        for (int i = 0; i < Constants.DIMENSION; i++)
+        {
+            for (int j = 0; j < Constants.DIMENSION; j++)
+            {
+                Sensor mySensor = new Sensor(j, i, this, myEnvironment);
+                this.mySensors.Add(mySensor);
+            }
+        }
 
-        this.actions = new Stack<string>();
+        // Stack of his Intentions
+        this.Intentions = new Stack<string>();
 
+        // Initialisation of his Believe of environment
         this.states = new int[Constants.DIMENSION][];
         for (int i = 0; i < Constants.DIMENSION; i++)
         {
@@ -34,31 +49,22 @@ public class Robot{
                 this.states[i][j] = 0;
             }
         }
-        for (int i = 0; i < Constants.DIMENSION; i++)
-        {
-            for (int j = 0; j < Constants.DIMENSION; j++)
-            {
-                Sensor mySensor = new Sensor(j, i, this, myEnvironment);
-                this.mySensors.Add(mySensor);
-            }
-        }
     }
 
     // Méthodes
     public void life(){
         while(true){
             this.ObserveEnvironmentWithAllMySensors();
-            //Console.WriteLine("\n\nRobot position :" + (this.PositionX+1) + " " + (this.PositionY+1)+"\n");
             Console.WriteLine("\n///////////////////////////////////////////////////////////////////////////////////////////////");
             Console.WriteLine("///////////////////////Etat de l'environnement enregistré par le robot/////////////////////////");
-            this.myEnvironment.print(this.PositionX, this.PositionY);
-            //this.PrintStates();
+            this.myEnvironment.print(this.PositionX, this.PositionY);   // Print the environment at the beginning of the sequence
             this.ChooseSequenceOfAction();
             this.JustDoIt();
             Thread.Sleep(1000);
         }   
     }
 
+    // Update agent's perception of his environment using his sensors
     public void ObserveEnvironmentWithAllMySensors(){
         int i = 0;
         int j = 0;
@@ -73,6 +79,7 @@ public class Robot{
         }
     }
 
+    // Determinate next sequence of intention
     public void ChooseSequenceOfAction(){
 
         // Non Informé
@@ -82,9 +89,11 @@ public class Robot{
         //GreedySearch();
         
     }
+    
+    // Execute sequence 
     public void JustDoIt(){
         int i = 1;
-        while(this.actions.Count > 0){
+        while(this.Intentions.Count > 0){
             string CurrentAction = this.getNextAction();
             Console.WriteLine("Action n°" + i + " : " + CurrentAction);
             if(CurrentAction == Constants.GOUP){
@@ -112,6 +121,7 @@ public class Robot{
         }
     }
 
+    // Agent using BFS for searching a optimal solution
     public void BreadthFirstSearch(){
         Tree MyTree = new Tree(this);
         Node? Solution = MyTree.TreeSearchBFS();    
@@ -122,6 +132,7 @@ public class Robot{
         }
     }
 
+    // Agent using Greedy Search for searching a solution
     public void GreedySearch(){
         Tree MyTree = new Tree(this);
         Node? Solution = MyTree.TreeSearchGreedy();
@@ -131,33 +142,17 @@ public class Robot{
             Console.WriteLine("No solution finded");
         }
     }
-    public void PrintStates(){
-        Console.WriteLine();
-        for (int i = 0; i < Constants.DIMENSION; i++)
-        {
-            for(int j = 0; j < Constants.DIMENSION; j++){
-                Console.WriteLine(this.states[i][j]);
-            }
-        }
-    }
+
     // Getters
     public int getElectricity(){ return this.Electricity; }
     public int getPositionX(){ return this.PositionX; }
     public int getPositionY(){ return this.PositionY; }
     public int[][] getStates(){ return this.states; }
-    public string getNextAction() { return this.actions.Pop(); }
+    public string getNextAction() { return this.Intentions.Pop(); }
 
     // Setters
-    public void setPositionX(int newPosition){
-        this.PositionX = newPosition;
-    }
-    public void setPositionY(int newPosition){
-        this.PositionY = newPosition;
-    }
-    public void consumeElectricity(){
-        this.Electricity++;
-    }
-    public void setActions(Stack<string> sequenceOfActions){
-        this.actions = sequenceOfActions;
-    }
+    public void setPositionX(int newPosition){ this.PositionX = newPosition;}
+    public void setPositionY(int newPosition){ this.PositionY = newPosition;}
+    public void consumeElectricity(){ this.Electricity++;}
+    public void setActions(Stack<string> sequenceOfActions){ this.Intentions = sequenceOfActions;}
 }

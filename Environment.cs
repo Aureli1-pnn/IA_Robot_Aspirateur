@@ -1,12 +1,13 @@
 public class Environment{
 
-    // Attributs
+    // Attributes
     private Room[][] Map = new Room[Constants.DIMENSION][];
     private int performance_measure;
 
-    // Constructeur
+    // Constructor
     public Environment(){
         this.performance_measure = 0;
+        // initialize all the room of environment
         for (int i = 0; i < Constants.DIMENSION; i++)
         {
             this.Map[i] = new Room[Constants.DIMENSION];
@@ -23,15 +24,10 @@ public class Environment{
     public Room[][] getMap(){ return this.Map;}
 
     // Methods 
-    // Interface
+    
+    // Interface console
     public void print(int PositionRobotX, int PositionRobotY){
 
-        //Console.WriteLine("Code [D,J,R] -- D = X la pièce est sale -- J il y a un joyeau -- R le robot est présent sinon il y a un espace\n");
-        /*for (int i = 0; i < Constants.DIMENSION; i++)
-        {
-            Console.Write("[D,J,R]");
-        }*/
-        //Console.WriteLine();
         for (int i = 0; i < Constants.DIMENSION; i++)
         {
             for (int j = 0; j < Constants.DIMENSION; j++)
@@ -85,8 +81,15 @@ public class Environment{
         Map[randomLine][randomColumn].dirty();
     }
 
+    public void loseJewel(){
+        Random rd = new Random();
+        int randomLine = rd.Next(0, Constants.DIMENSION);
+        int randomColumn = rd.Next(0, Constants.DIMENSION);
+        this.Map[randomLine][randomColumn].setHaveJewel(true); 
+    }
     public void cleaningRoom(int X, int Y){
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
+            // use for performance measure of the agent
             if(this.Map[X][Y].AmIDirty()){
                 changePerformanceMeasure(10);
             }
@@ -96,31 +99,27 @@ public class Environment{
             if(this.Map[X][Y].doIHaveAJewel()){
                 changePerformanceMeasure(-1000);
             }
+
             this.Map[X][Y].cleaned();
         }
     }
 
     public void catchJewel(int X, int Y){
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
+            // use for performance measure of the agent
             if(this.Map[X][Y].doIHaveAJewel()){
                 changePerformanceMeasure(100);
             }
             else{
                 changePerformanceMeasure(-5);
             }
+
             this.Map[X][Y].setHaveJewel(false);
         }
     }
 
-    public void loseJewel(){
-        Random rd = new Random();
-        int randomLine = rd.Next(0, Constants.DIMENSION);
-        int randomColumn = rd.Next(0, Constants.DIMENSION);
-        this.Map[randomLine][randomColumn].setHaveJewel(true); 
-    }
-
-    public int returnPerformanceMeasure(int electricity_consumption){
-        return this.performance_measure+electricity_consumption;
+    public int CalculPerformanceMeasure(int electricity_consumption){
+        return this.performance_measure-electricity_consumption;
     }
 
     public void life(){

@@ -7,9 +7,9 @@ namespace Agent_aspirateur
         static void Main(string[] args)
         {
             // Determinate dimension of the house with the user entry
-            /*if(!determinateDimension(args)){
+            if(!determinateDimension(args)){
                 System.Environment.Exit(0);
-            }*/
+            }
 
             // Initialisation of the variables
             Environment myEnvironment = new Environment();
@@ -28,12 +28,10 @@ namespace Agent_aspirateur
             t2.Start();
 
             // Display performance measure
-            //Console.WriteLine("Performance measure : " + myEnvironment.returnPerformanceMeasure(myRobot.getElectricity()));
-
-            // Test
-
+            //Console.WriteLine("Performance measure : " + myEnvironment.CalculPerformanceMeasure(myRobot.getElectricity()));
         }
 
+        // Use in the beginning of the program to determinate the dimension of the house 
         static bool determinateDimension(string[] args){
             bool isAllGood = false;
             Parser.Default.ParseArguments<Options>(args).WithParsed<Options>(ops =>{
@@ -42,7 +40,6 @@ namespace Agent_aspirateur
                 }else{
                     Console.WriteLine("Current value of Dimension : " + ops.Dimension);
                     Constants.DIMENSION = ops.Dimension;
-                    Constants.NBOFROOM = ops.Dimension*ops.Dimension;
                     isAllGood = true;
                 }
             });

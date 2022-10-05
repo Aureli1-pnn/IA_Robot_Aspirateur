@@ -10,16 +10,20 @@ public class Effector{
     }
 
     // Methods 
+
+    // Make the agent aspire and update environment in consequence
     public void aspire(){
         this.MyEnvironment.cleaningRoom(this.Owner.getPositionY(), this.Owner.getPositionX());
         this.Owner.consumeElectricity();
     }
+
+    // Make the agent catch a jewel and update environment in consequence
     public void catchJewel(){
         this.MyEnvironment.catchJewel(this.Owner.getPositionY(), this.Owner.getPositionX());
         this.Owner.consumeElectricity();
     }
 
-    // Méthodes de déplacement du robot
+    // Move methods
     public void goToTheLeft(){
         if(this.Owner.getPositionX() > 0){
             this.Owner.setPositionX(this.Owner.getPositionX()-1);
