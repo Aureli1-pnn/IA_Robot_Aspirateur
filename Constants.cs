@@ -1,6 +1,6 @@
 static class Constants{
     public static int DIMENSION;
-    public static int NBOFACTION;
+    public static int? NBOFACTION = 10;
 
     // All Possible Actions
     public const string GOUP = "GoUp";

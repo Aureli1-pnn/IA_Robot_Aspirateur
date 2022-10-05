@@ -38,7 +38,7 @@ public class Node{
         this.AlreadyVisitRoom.Add(localisation);
     }
     // Others nodes constructor
-    public Node(int Depth, string Action, int X, int Y, int[][] MyState, Node? Father, List<Tuple<int, int>> visited, bool Imoved){
+    public Node(int Depth, string Action, int X, int Y, int[][] MyState, Node Father, List<Tuple<int, int>> visited, bool Imoved){
 
         this.Depth = Depth;
         this.Action = Action;
@@ -252,8 +252,11 @@ public class Node{
     public void printSequence(Stack<string> Sequence){
         int i = 1;
         foreach (var item in Sequence)
-        {
+        {   
             Console.WriteLine(i + " : " + item);
+            if(i == Constants.NBOFACTION){
+                Console.WriteLine("---------- Le robot n'ira pas plus loin -------");
+            }
             i++;
         }
         Console.WriteLine();

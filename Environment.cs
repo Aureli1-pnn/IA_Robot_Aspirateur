@@ -53,10 +53,9 @@ public class Environment{
     }
 
     public bool shouldThereBeANewDirtySpace(){
-        // Maybe a new dirty room (probability 1/30 for non informed 1/20 for informed)
+        // Maybe a new dirty room (probability 1/30)
         Random rd = new Random();
-        //int chance = rd.Next(1, 31);
-        int chance = rd.Next(1, 21);
+        int chance = rd.Next(1, 31);
         if(chance == 7){
             return true;
         }
@@ -64,10 +63,9 @@ public class Environment{
     }
 
     public bool shouldThereBeANewLostJewel(){
-        // Maybe a jewel somewhere (probability 1/150 for no-informed 1/100 informed)
+        // Maybe a jewel somewhere (probability 1/150)
         Random rd = new Random();
-        //int chance = rd.Next(1, 151);
-        int chance = rd.Next(1, 101);
+        int chance = rd.Next(1, 151);
         if(chance == 69){               // Aller l'OL
             return true;
         }
@@ -97,7 +95,7 @@ public class Environment{
                 changePerformanceMeasure(-5);
             }
             if(this.Map[X][Y].doIHaveAJewel()){
-                changePerformanceMeasure(-1000);
+                changePerformanceMeasure(-50);
             }
 
             this.Map[X][Y].cleaned();
@@ -108,7 +106,7 @@ public class Environment{
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
             // use for performance measure of the agent
             if(this.Map[X][Y].doIHaveAJewel()){
-                changePerformanceMeasure(100);
+                changePerformanceMeasure(20);
             }
             else{
                 changePerformanceMeasure(-5);

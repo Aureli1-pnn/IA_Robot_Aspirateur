@@ -60,6 +60,7 @@ public class Robot{
             this.myEnvironment.print(this.PositionX, this.PositionY);   // Print the environment at the beginning of the sequence
             this.ChooseSequenceOfAction();
             this.JustDoIt();
+            Console.WriteLine("Performance measure : " + myEnvironment.CalculPerformanceMeasure(this.getElectricity()));
             Thread.Sleep(1000);
         }   
     }
@@ -154,5 +155,23 @@ public class Robot{
     public void setPositionX(int newPosition){ this.PositionX = newPosition;}
     public void setPositionY(int newPosition){ this.PositionY = newPosition;}
     public void consumeElectricity(){ this.Electricity++;}
-    public void setActions(Stack<string> sequenceOfActions){ this.Intentions = sequenceOfActions;}
+    public void setActions(Stack<string> sequenceOfActions){ 
+        if(Constants.NBOFACTION == null){
+            this.Intentions = sequenceOfActions;
+        }else{
+            Stack<string> revIntentions = new Stack<string>();
+            Stack<string> newIntentions = new Stack<string>();
+            int i=1;
+            while(i <= Constants.NBOFACTION && sequenceOfActions.Count >= 1){
+                revIntentions.Push(sequenceOfActions.Pop());
+                i++;
+            }
+            i=1;
+            while(i <= Constants.NBOFACTION && revIntentions.Count >= 1){
+                newIntentions.Push(revIntentions.Pop());
+                i++;
+            }
+            this.Intentions = newIntentions;
+        }
+    }
 }
