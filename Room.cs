@@ -32,5 +32,7 @@ public class Room{
     // Setters
     public void setHaveJewel(bool newValue){ HaveJewel=newValue;}
     public void dirty(){ IsDirty=true;}
-    public void cleaned(){ IsDirty=false;}
+    public void cleaned(){ 
+        IsDirty=false;
+        HaveJewel=false;}
 }

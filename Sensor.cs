@@ -18,10 +18,10 @@ public class Sensor{
         int stateOfRoom = 0;
         Room myRoom = this.Environment.getRoom(this.PositionX, this.PositionY);
         if(myRoom.AmIDirty()){
-            stateOfRoom += 1;
+            stateOfRoom += 10;
         }
         if(myRoom.doIHaveAJewel()){
-            stateOfRoom += 10;
+            stateOfRoom += 100;
         }
 
         return stateOfRoom;

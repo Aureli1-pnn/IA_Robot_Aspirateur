@@ -37,7 +37,6 @@ public class Node{
         Tuple<int,int> localisation = new Tuple<int, int>(X, Y);
         this.AlreadyVisitRoom.Add(localisation);
     }
-
     // Others nodes constructor
     public Node(int Depth, string Action, int X, int Y, int[][] MyState, Node? Father, List<Tuple<int, int>> visited, bool Imoved){
 
@@ -68,6 +67,9 @@ public class Node{
             this.AlreadyVisitRoom.Add(localisation);
         }
     }
+    // Informed initial node constructor
+
+    // Informed others nodes constructor
 
     // Methods
     public Node[] Expand(){
@@ -75,7 +77,7 @@ public class Node{
         this.Children = new Node[6];
 
         // Child with action aspire
-        if(this.State[this.RobotPositionX][this.RobotPositionY]-1 >= 0){
+        if(this.State[this.RobotPositionX][this.RobotPositionY] == 10){
             int[][] newState = new int[Constants.DIMENSION][];
             for (int i = 0; i < Constants.DIMENSION; i++)
             {
@@ -85,7 +87,7 @@ public class Node{
                     newState[i][j] = this.State[i][j];
                 }
             }
-            newState[this.RobotPositionX][this.RobotPositionY] -= 1;
+            newState[this.RobotPositionX][this.RobotPositionY] -= 10;
 
             this.IsLeaf = false;
             this.Children[0] = new Node(this.Depth+1, 
@@ -99,7 +101,7 @@ public class Node{
         }
 
         // Child with action catchjewel
-        if(this.State[this.RobotPositionX][this.RobotPositionY]-10 >= 0){
+        if(this.State[this.RobotPositionX][this.RobotPositionY]-100 >= 0){
             int[][] newState = new int[Constants.DIMENSION][];
             for (int i = 0; i < Constants.DIMENSION; i++)
             {
@@ -109,7 +111,7 @@ public class Node{
                     newState[i][j] = this.State[i][j];
                 }
             }
-            newState[this.RobotPositionX][this.RobotPositionY] -= 10;
+            newState[this.RobotPositionX][this.RobotPositionY] -= 100;
 
             this.IsLeaf = false;
             this.Children[1] = new Node(this.Depth+1, 
@@ -176,7 +178,7 @@ public class Node{
 
         return this.Children;
     }
-
+    
     // Goal is obtain a clean state
     public bool GoalTest(){
         for (int i = 0; i < Constants.DIMENSION; i++)
@@ -209,6 +211,22 @@ public class Node{
         else{
             return false;
         }
+    }
+
+    public int CalculHeuristic(){
+        int heuristic = 0;
+        for (int i = 0; i < Constants.DIMENSION; i++)
+        {
+            for (int j = 0; j < Constants.DIMENSION; j++)
+            {
+                if(this.State[i][j] > 0){
+                    heuristic += this.State[i][j];
+                    heuristic += Math.Abs(i - this.RobotPositionX);
+                    heuristic += Math.Abs(j - this.RobotPositionY);
+                }
+            }
+        }
+        return heuristic;
     }
 
     // Return sequence

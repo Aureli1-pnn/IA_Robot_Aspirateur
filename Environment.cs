@@ -23,25 +23,44 @@ public class Environment{
     public Room[][] getMap(){ return this.Map;}
 
     // Methods 
-    public void print(){
+    // Interface
+    public void print(int PositionRobotX, int PositionRobotY){
+
+        //Console.WriteLine("Code [D,J,R] -- D = X la pièce est sale -- J il y a un joyeau -- R le robot est présent sinon il y a un espace\n");
+        /*for (int i = 0; i < Constants.DIMENSION; i++)
+        {
+            Console.Write("[D,J,R]");
+        }*/
+        //Console.WriteLine();
         for (int i = 0; i < Constants.DIMENSION; i++)
         {
-                Console.WriteLine(this.Map[i][0].AmIDirty()
-                                + " "
-                                + this.Map[i][1].AmIDirty()
-                                + " "
-                                + this.Map[i][2].AmIDirty()
-                                + " "
-                                + this.Map[i][3].AmIDirty()
-                                + " "
-                                + this.Map[i][4].AmIDirty());
+            for (int j = 0; j < Constants.DIMENSION; j++)
+            {
+                if(this.Map[i][j].AmIDirty()){
+                    Console.Write("[Dirty,");
+                }else{
+                    Console.Write("[     ,");
+                }
+                if(this.Map[i][j].doIHaveAJewel()){
+                    Console.Write("Jewel,");
+                }else{
+                    Console.Write("     ,");
+                }
+                if(j == PositionRobotX && i == PositionRobotY){
+                    Console.Write("Robot]");
+                }else{
+                    Console.Write("     ]");
+                }
+            }
+            Console.WriteLine();
         }
     }
 
     public bool shouldThereBeANewDirtySpace(){
-        // Maybe a new dirty room (probability 1/300000)
+        // Maybe a new dirty room (probability 1/30 for non informed 1/20 for informed)
         Random rd = new Random();
-        int chance = rd.Next(1, 3000001);
+        //int chance = rd.Next(1, 31);
+        int chance = rd.Next(1, 21);
         if(chance == 7){
             return true;
         }
@@ -49,10 +68,11 @@ public class Environment{
     }
 
     public bool shouldThereBeANewLostJewel(){
-        // Maybe a jewel somewhere (probability 1/100000000)
+        // Maybe a jewel somewhere (probability 1/150 for no-informed 1/100 informed)
         Random rd = new Random();
-        int chance = rd.Next(1, 1000000001);
-        if(chance == 69){           // Aller l'OL
+        //int chance = rd.Next(1, 151);
+        int chance = rd.Next(1, 101);
+        if(chance == 69){               // Aller l'OL
             return true;
         }
         return false;
@@ -68,13 +88,13 @@ public class Environment{
     public void cleaningRoom(int X, int Y){
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
             if(this.Map[X][Y].AmIDirty()){
-                changePerformanceMeasure(1);
+                changePerformanceMeasure(10);
             }
             else{
-                changePerformanceMeasure(-1);
+                changePerformanceMeasure(-5);
             }
             if(this.Map[X][Y].doIHaveAJewel()){
-                changePerformanceMeasure(-10);
+                changePerformanceMeasure(-1000);
             }
             this.Map[X][Y].cleaned();
         }
@@ -83,10 +103,10 @@ public class Environment{
     public void catchJewel(int X, int Y){
         if(X>=0 && X<Constants.DIMENSION && Y>=0 && Y<Constants.DIMENSION){
             if(this.Map[X][Y].doIHaveAJewel()){
-                changePerformanceMeasure(5);
+                changePerformanceMeasure(100);
             }
             else{
-                changePerformanceMeasure(-1);
+                changePerformanceMeasure(-5);
             }
             this.Map[X][Y].setHaveJewel(false);
         }
@@ -111,6 +131,7 @@ public class Environment{
             if(shouldThereBeANewLostJewel()){
                 loseJewel();
             }
+            Thread.Sleep(200);
         }
     }
 

@@ -48,13 +48,15 @@ public class Robot{
     public void life(){
         while(true){
             this.ObserveEnvironmentWithAllMySensors();
-            Console.WriteLine("\n\nRobot position :" + (this.PositionX+1) + " " + (this.PositionY+1)+"\n");
-            this.myEnvironment.print();
+            //Console.WriteLine("\n\nRobot position :" + (this.PositionX+1) + " " + (this.PositionY+1)+"\n");
+            Console.WriteLine("\n///////////////////////////////////////////////////////////////////////////////////////////////");
+            Console.WriteLine("///////////////////////Etat de l'environnement enregistré par le robot/////////////////////////");
+            this.myEnvironment.print(this.PositionX, this.PositionY);
             //this.PrintStates();
             this.ChooseSequenceOfAction();
             this.JustDoIt();
-            Thread.Sleep(2000);
-        }
+            Thread.Sleep(1000);
+        }   
     }
 
     public void ObserveEnvironmentWithAllMySensors(){
@@ -74,19 +76,17 @@ public class Robot{
     public void ChooseSequenceOfAction(){
 
         // Non Informé
-        Tree MyTree = new Tree(this);
-        Node? Solution = MyTree.TreeSearch();    
-        if(Solution != null){
-            setActions(Solution.GenerateSequence());
-        }else{
-            Console.WriteLine("No solution finded");
-        }
+        BreadthFirstSearch();
+
         // Informé
+        //GreedySearch();
         
     }
     public void JustDoIt(){
+        int i = 1;
         while(this.actions.Count > 0){
             string CurrentAction = this.getNextAction();
+            Console.WriteLine("Action n°" + i + " : " + CurrentAction);
             if(CurrentAction == Constants.GOUP){
                 this.myEffector.goUp();
             }
@@ -105,9 +105,32 @@ public class Robot{
             else if(CurrentAction == Constants.CATCHJEWEL){
                 this.myEffector.catchJewel();
             }
+            i++;
+            this.myEnvironment.print(this.PositionX, this.PositionY);
+            Console.WriteLine();
+            Thread.Sleep(1000);
         }
     }
 
+    public void BreadthFirstSearch(){
+        Tree MyTree = new Tree(this);
+        Node? Solution = MyTree.TreeSearchBFS();    
+        if(Solution != null){ 
+            setActions(Solution.GenerateSequence());
+        }else{
+            Console.WriteLine("No solution finded");
+        }
+    }
+
+    public void GreedySearch(){
+        Tree MyTree = new Tree(this);
+        Node? Solution = MyTree.TreeSearchGreedy();
+        if(Solution != null){
+            setActions(Solution.GenerateSequence());
+        }else{
+            Console.WriteLine("No solution finded");
+        }
+    }
     public void PrintStates(){
         Console.WriteLine();
         for (int i = 0; i < Constants.DIMENSION; i++)

@@ -28,7 +28,7 @@ namespace Agent_aspirateur
             t2.Start();
 
             // Display performance measure
-            Console.WriteLine("Performance measure : " + myEnvironment.returnPerformanceMeasure(myRobot.getElectricity()));
+            //Console.WriteLine("Performance measure : " + myEnvironment.returnPerformanceMeasure(myRobot.getElectricity()));
 
             // Test
 

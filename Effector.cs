@@ -11,11 +11,11 @@ public class Effector{
 
     // Methods 
     public void aspire(){
-        this.MyEnvironment.cleaningRoom(this.Owner.getPositionX(), this.Owner.getPositionY());
+        this.MyEnvironment.cleaningRoom(this.Owner.getPositionY(), this.Owner.getPositionX());
         this.Owner.consumeElectricity();
     }
     public void catchJewel(){
-        this.MyEnvironment.catchJewel(this.Owner.getPositionX(), this.Owner.getPositionY());
+        this.MyEnvironment.catchJewel(this.Owner.getPositionY(), this.Owner.getPositionX());
         this.Owner.consumeElectricity();
     }
 
@@ -39,7 +39,7 @@ public class Effector{
         }
     }
     public void goDown(){
-        if(this.Owner.getPositionY() > Constants.DIMENSION-1){
+        if(this.Owner.getPositionY() < Constants.DIMENSION-1){
             this.Owner.setPositionY(this.Owner.getPositionY()+1);
             this.Owner.consumeElectricity();
         }
