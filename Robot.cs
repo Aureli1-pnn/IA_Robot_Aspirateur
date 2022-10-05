@@ -60,7 +60,7 @@ public class Robot{
             this.myEnvironment.print(this.PositionX, this.PositionY);   // Print the environment at the beginning of the sequence
             this.ChooseSequenceOfAction();
             this.JustDoIt();
-            Console.WriteLine("Performance measure : " + myEnvironment.CalculPerformanceMeasure(this.getElectricity()));
+            //Console.WriteLine("Performance measure : " + myEnvironment.CalculPerformanceMeasure(this.getElectricity()));
             Thread.Sleep(1000);
         }   
     }
@@ -84,10 +84,10 @@ public class Robot{
     public void ChooseSequenceOfAction(){
 
         // Non Informé
-        BreadthFirstSearch();
+        //BreadthFirstSearch();
 
         // Informé
-        //GreedySearch();
+        GreedySearch();
         
     }
     

@@ -17,8 +17,11 @@ namespace Agent_aspirateur
 
             // Some print for user
             Console.Clear();
-            Console.WriteLine("//////////////////////////////////////////////////////////////////////////////////////////////");
+            /*Console.WriteLine("//////////////////////////////////////////////////////////////////////////////////////////////");
             Console.WriteLine("///////////////////////////////// Exploration Non Informée ///////////////////////////////////");
+            Console.WriteLine("//////////////////////////////////////////////////////////////////////////////////////////////\n");*/
+            Console.WriteLine("//////////////////////////////////////////////////////////////////////////////////////////////");
+            Console.WriteLine("//////////////////////////////////// Exploration Informée ////////////////////////////////////");
             Console.WriteLine("//////////////////////////////////////////////////////////////////////////////////////////////\n");
             Console.WriteLine("Vous avez choisi un manoir de dimension " + Constants.DIMENSION + "x" + Constants.DIMENSION + "\n\n");
             //Thread.Sleep(4000);
@@ -34,9 +37,6 @@ namespace Agent_aspirateur
             // Executing threads
             t1.Start();
             t2.Start();
-
-            // Display performance measure
-            Console.WriteLine("Performance measure : " + myEnvironment.CalculPerformanceMeasure(myRobot.getElectricity()));
         }
 
         // Use in the beginning of the program to determinate the dimension of the house 
